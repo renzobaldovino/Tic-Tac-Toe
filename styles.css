@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #406b6c;
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+button {
+    width: 90px;
+    padding: .5em 1em;
+    background: #efe9e9;
+    border: 1px solid #406b6c;
+    border-radius: .5em;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #406b6c;
+}
+
+.wrapper {
+    min-width: 330px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    background: #efe9e9;
+    border-radius: 15px;
+}
+
+#announcement {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: #406b6c;
+    text-align: center;
+}
+
+.player-container {
+    padding: .5em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-container .score-board {
+    width: 3rem;
+    text-align: center;
+    background: #f5f5f5;
+    border-radius: .25em;
+}
+
+.player-container .x-symbol,
+.player-container .o-symbol {
+    font-family: 'Nunito', sans-serif;
+    color: #406b6c;
+    font-size: 1.5rem;
+}
+
+.player-container .x-symbol {
+    margin-left: auto;
+    margin-right: 4px;
+}
+
+.player-container .o-player {
+    margin-left: 4px;
+    margin-right: auto;
+}
+
+.game-board {
+    width: 100%;
+    margin: 10px 0;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background: #f5f5f5;
+    border-radius: .25rem;
+}
+
+.game-board .grid-cell {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    color: #406b6c;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.grid-cell:nth-child(-n+3) {
+    border-bottom: 2px solid #406b6c;
+}
+
+.grid-cell:nth-child(3n+1) {
+    border-right: 2px solid #406b6c;
+}
+
+.grid-cell:nth-child(3n) {
+    border-left: 2px solid #406b6c;
+}
+
+.grid-cell:nth-child(n+7) {
+    border-top: 2px solid #406b6c;
+}
+
+.btn-group {
+    padding-top: .5rem;
+    display: flex;
+    justify-content: center;
+}
