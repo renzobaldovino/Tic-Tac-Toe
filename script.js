@@ -1,10 +1,10 @@
-const gameBoard = document.querySelector(".game-board");
+const cells = document.querySelectorAll(".grid-cell");
 const announcement = document.getElementById("announcement");
 const continueBtn = document.getElementById("btn-continue");
 const resetBtn = document.getElementById("btn-reset");
 const xScore = document.getElementById("x-score");
 const oScore = document.getElementById("o-score");
-let board = [];
+let board = ["", "", "", "", "", "", "", "", ""];
 const winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -16,42 +16,59 @@ const winningConditions = [
     [2, 4, 6]
 ];
 let playerTurn = 0;
+let endGame = false;
 
-gameBoard.addEventListener('click', function(e) {
-    let cell = document.getElementById(e.target.id);
-    if(cell.textContent === ''){
-        if(playerTurn % 2 === 0){
-            cell.textContent = "X";
-            announcement.textContent = "Player O's Turn";
-        }
-        else {
-            cell.textContent = "O";
-            announcement.textContent = "Player X's Turn";
-        }
-        playerTurn++;
-        setBoard();
-        if (playerTurn === 9) {
-            announcement.textContent = "It's a Draw";
-            reset()
-        }
-        if (result()) {
-            reset();
-        }
+setGame();
+
+function setGame () {
+    endGame = false;
+    playerTurn = 0;
+    board = ["", "", "", "", "", "", "", "", ""];
+    announcement.textContent = "Player X's Turn";
+    for(let i = 0; i < 9; i++){
+        document.getElementById(i).textContent = '';
     }
+}
+
+cells.forEach((cell) => {
+    cell.addEventListener('click', (e) => {
+        let id = e.target.id;
+        if (cell.textContent === '' && !endGame) {
+            if(playerTurn % 2 === 0){
+                cell.textContent = "X";
+                board[id] = "X";
+                announcement.textContent = "Player O's Turn";
+            }
+            else {
+                cell.textContent = "O";
+                board[id] = "O"
+                announcement.textContent = "Player X's Turn";
+            }
+            playerTurn++;
+            if (result()) {
+                endGame = true;
+            }
+            if (playerTurn === 9) {
+                announcement.textContent = "It's a Draw";
+                endGame = true;
+            }
+            if (endGame) {
+                continueBtn.style.opacity = "1";
+            }
+        }
+    });
 });
 
-resetBtn.addEventListener('click', function () {
-    reset();
+resetBtn.addEventListener('click', () => {
+    setGame();
     xScore.textContent = 0;
     oScore.textContent = 0;
 });
 
-function setBoard(){
-    board = [];
-    for(let i = 1; i <= 9; i++){
-        board.push(document.getElementById("cell" + i).textContent);
-    }
-}
+continueBtn.addEventListener('click', () => {
+    setGame();
+    continueBtn.style.opacity = "0";
+});
 
 function result(){
     for(let i = 0; i < 8; i++) {
@@ -73,14 +90,5 @@ function result(){
             }
             return true;
         }
-    }
-}
-
-function reset () {
-    playerTurn = 0;
-    board = [];
-    announcement.textContent = "Player X's Turn";
-    for(let i = 1; i <= 9; i++){
-        document.getElementById("cell" + i).textContent = '';
     }
 }

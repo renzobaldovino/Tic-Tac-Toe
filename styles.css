@@ -31,6 +31,7 @@ button {
 
 button:hover {
     background: #406b6c;
+    color: #efe9e9;
 }
 
 .wrapper {
@@ -122,5 +123,10 @@ button:hover {
 .btn-group {
     padding-top: .5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+#btn-continue {
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
 }
