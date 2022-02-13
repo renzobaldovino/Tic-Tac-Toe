@@ -24,18 +24,20 @@ button {
     width: 90px;
     padding: .5em 1em;
     background: #efe9e9;
-    border: 1px solid #406b6c;
+    border: 1px solid #efe9e9;
     border-radius: .5em;
     cursor: pointer;
 }
 
 button:hover {
     background: #406b6c;
+    border-color: #406b6c;
     color: #efe9e9;
 }
 
 .wrapper {
     min-width: 330px;
+    height: 455px;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -43,47 +45,62 @@ button:hover {
     border-radius: 15px;
 }
 
-#announcement {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    color: #406b6c;
-    text-align: center;
+.select div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.player-container {
-    padding: .5em 0;
+.select div div {
+    height: 40%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    color: #406b6c;
+    background-color: #f5f5f5;
+    border-radius: 7.5px;
+}
+
+.select div div:hover {
+    background-color: #406b6c;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+
+.symbol-page {
+    display: none;
+}
+
+.game-page {
+    display: none;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-around;
     align-items: center;
 }
 
-.player-container .score-board {
-    width: 3rem;
+.score-board > * {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5em;
     text-align: center;
-    background: #f5f5f5;
-    border-radius: .25em;
+    font-variant-numeric: tabular-nums;
 }
 
-.player-container .x-symbol,
-.player-container .o-symbol {
+.symbol{
     font-family: 'Nunito', sans-serif;
     color: #406b6c;
     font-size: 1.5rem;
 }
 
-.player-container .x-symbol {
-    margin-left: auto;
-    margin-right: 4px;
-}
-
-.player-container .o-player {
-    margin-left: 4px;
-    margin-right: auto;
-}
-
 .game-board {
     width: 100%;
-    margin: 10px 0;
+    margin: 30px 0;
     padding: 1em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -120,13 +137,24 @@ button:hover {
     border-top: 2px solid #406b6c;
 }
 
+.gameOver {
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    color: #efe9e9;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
 .btn-group {
     padding-top: .5rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-#btn-continue {
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
+.btn-group > * {
+    width: 50%;
 }
